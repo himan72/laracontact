@@ -2,17 +2,16 @@
 
 namespace Laracontact\Tests\Feature;
 
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
+use Laracontact\Events\ContactRequestEvent;
+use Laracontact\Mail\ContactRequestMail;
+use Laracontact\Notifications\ContactRequestNotification;
 use Laracontact\Tests\TestCase;
 
 class ContactTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->artisan('vendor:publish', ['--tag' => 'Laracontact\LaracontactServiceProvider'])->run();
-        $this->artisan('migrate')->run();
-    }
 
     /**
      * @test
@@ -30,11 +29,9 @@ class ContactTest extends TestCase
      */
     public function it_stores_the_contact_message_in_contact_requests_table()
     {
-        $data = $this->getData();
 
-        $this->post(route('contact_us.store'), $data);
-
-        $this->assertDatabaseHas('contact_requests', $data);
+        $this->postContactRequest();
+        $this->assertDatabaseHas('contact_requests', $this->getData());
     }
 
     /**
@@ -42,10 +39,32 @@ class ContactTest extends TestCase
     */
     public function it_redirect_to_config_path()
     {
-        $data = $this->getData();
-
-        $resp = $this->post(route('contact_us.store'), $data)
+        $this->postContactRequest()
         ->assertRedirect('/thanks-message');
+
+    }
+
+    /**
+         * @test
+    */
+    public function it_notifys_admins_on_contact_request()
+    {
+        Mail::fake();
+        $this->postContactRequest();
+        Mail::assertSent(ContactRequestMail::class, 3);
+
+    }
+
+    /**
+         * @test
+    */
+    public function it_fires_an_event_on_contact_request()
+    {
+        Event::fake();
+
+        $this->postContactRequest();
+        
+        Event::assertDispatched(ContactRequestEvent::class);
 
     }
 
@@ -60,5 +79,14 @@ class ContactTest extends TestCase
             'subject' => 'dummy subject',
             'message' => 'dummy message',
         ];
+    }
+
+    /**
+     * @param null $data
+     * @return \Illuminate\Foundation\Testing\TestResponse
+     */
+    protected function postContactRequest($data = null)
+    {
+        return $this->post(route('contact_us.store'), $data ?? $this->getData());
     }
 }
