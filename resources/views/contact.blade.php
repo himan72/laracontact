@@ -69,7 +69,7 @@
     </div>
     <div class="row ">
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3">
-            <form id="contact-form" class="form" action="{{ route('contact-us.store') }}" method="POST" role="form">
+            <form id="contact-form" class="form" action="{{ route('contact_us.store') }}" method="POST" role="form">
                 @csrf
                 <div class="form-group">
                     <label class="form-label" for="name">{{__('Your Name')}}</label>
