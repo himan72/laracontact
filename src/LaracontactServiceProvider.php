@@ -19,11 +19,15 @@ class LaracontactServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../database/migrations/create_contact_requests_table.php.stub' => $this->getMigrationFileName($filesystem),
-        ], 'migration');
+        ], 'laracontact-migration');
 
         $this->publishes([
             __DIR__.'/../config/contact_request.php' => config_path('contact_request.php'),
-        ], 'config');
+        ], 'laracontact-config');
+
+        $this->publishes([
+            __DIR__.'/../resources/views/contact_request' => resource_path('views/vendor/contact_request'),
+        ], 'laracontact-views');
 
     }
 
