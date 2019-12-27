@@ -12,6 +12,7 @@ class ContactTest extends TestCase
     */
     public function it_shows_the_contact_us_form()
     {
+        $this->withoutExceptionHandling();
         $this->get('/contact-us')
             ->assertOk()
             ->assertSee('Contact us');
