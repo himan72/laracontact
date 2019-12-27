@@ -5,6 +5,14 @@ namespace Laracontact\Tests;
 class TestCase extends   \Orchestra\Testbench\TestCase
 {
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->artisan('vendor:publish', ['--tag' => 'Laracontact\LaracontactServiceProvider'])->run();
+        $this->artisan('migrate')->run();
+    }
+
 
     /**
      * Define environment setup.
@@ -23,6 +31,8 @@ class TestCase extends   \Orchestra\Testbench\TestCase
         ]);
 
         $app['config']->set('contact_request.redirectTo', '/thanks-message');
+        $app['config']->set('contact_request.notifiables', ['test1@test.com', 'test2@test.com', 'test3@test.com']);
+        $app['config']->set('contact_request.send_mails', true);
     }
 
     protected function getPackageProviders($app)
