@@ -1,0 +1,37 @@
+{
+    "name": "omh/laracontact",
+    "description": "A Contact Us form for Laravel applicaation",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mohammed",
+            "email": "mohammed@medhicham.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "illuminate/support": "^6.0"
+    },
+
+    "require-dev": {
+        "orchestra/testbench": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laracontact\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Laracontact\\Tests\\": "tests"
+        }
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Laracontact\\LaracontactServiceProvider"
+            ]
+        }
+    }
+}
