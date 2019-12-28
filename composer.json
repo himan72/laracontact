@@ -10,7 +10,8 @@
     "authors": [
         {
             "name": "Mohammed",
-            "email": "mohammed@medhicham.com"
+            "email": "mohammed@medhicham.com",
+            "homepage": "http://medhicham.com"
         }
     ],
     "require": {
