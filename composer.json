@@ -1,6 +1,11 @@
 {
     "name": "omh/laracontact",
     "description": "A Contact Us form for Laravel applicaation",
+    "keywords": [
+        "laravel",
+        "contact form"
+    ],
+    "homepage": "https://github.com/himan72/laracontact",
     "license": "MIT",
     "authors": [
         {
