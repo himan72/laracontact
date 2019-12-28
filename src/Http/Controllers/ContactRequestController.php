@@ -34,6 +34,7 @@ class ContactRequestController extends BaseController
            'g-recaptcha-response' => 'required|recaptcha'
         ]);
 
+
        $contact_request =  ContactRequest::create(Arr::except($valid_data, 'g-recaptcha-response'));
 
        if(config('contact_request.send_mails'))
