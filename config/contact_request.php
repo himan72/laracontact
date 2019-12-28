@@ -11,6 +11,11 @@ return [
     'redirectTo' => '/',
 
     /*
+    * Set the contact us page title.
+    */
+    'page_title' => 'Contact us',
+
+    /*
      * Array of emails that should receive the contact request
      */
     'notifiables' => ['admin@test.test'],
