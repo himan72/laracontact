@@ -59,6 +59,7 @@
             color: #5e9bfc;
         }
     </style>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 <div class=" container ">
@@ -80,7 +81,12 @@
                            placeholder="{{__('Your name')}}"
                            value="{{ old('name') }}"
                            tabindex="1"
-                           required>
+                           required
+                           >
+                    @error('name')
+                    <span class="alert alert-danger mt-2 d-inline-block"> {{$message}} </span>
+                    @enderror
+
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="email">{{__('Your Email')}}</label>
@@ -92,6 +98,9 @@
                            value="{{ old('email') }}"
                            tabindex="2"
                            required>
+                        @error('email')
+                    <span class="alert alert-danger mt-2 d-inline-block"> {{$message}} </span>
+                        @enderror
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="subject">{{__('Subject')}}</label>
@@ -103,6 +112,9 @@
                            value="{{ old('subject') }}"
                            tabindex="3"
                            required>
+                        @error('subject')
+                    <span class="alert alert-danger mt-2 d-inline-block"> {{$message}} </span>
+                        @enderror
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="message">{{__('Message')}}</label>
@@ -116,7 +128,18 @@
                               required>
                         {{ old('message') }}
                     </textarea>
+                        @error('message')
+                    <span class="alert alert-danger mt-2 d-inline-block"> {{$message}} </span>
+                        @enderror
                 </div>
+                @if(env('RECAPTCHA_SITEKEY'))
+                    <div class="g-recaptcha"
+                         data-sitekey="{{env('RECAPTCHA_SITEKEY')}}">
+                    </div>
+                        @error('g-recaptcha')
+                    <span class="alert alert-danger mt-2 d-inline-block"> {{$message}} </span>
+                        @enderror
+                @endif
                 <div class="text-center">
                     <button type="submit" class="btn btn-start-order">{{__('Send Message')}}</button>
                 </div>
