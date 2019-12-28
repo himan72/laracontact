@@ -15,4 +15,9 @@ return [
      */
     'send_mails' => true,
 
+    'recaptcha' => [
+        'recaptcha_secret' => env('RECAPTCHA_SECRET'),
+        'recaptcha_sitekey' => env('RECAPTCHA_SITEKEY'),
+    ]
+
 ];
