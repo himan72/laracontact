@@ -136,7 +136,7 @@
                     <div class="g-recaptcha"
                          data-sitekey="{{env('RECAPTCHA_SITEKEY')}}">
                     </div>
-                        @error('g-recaptcha')
+                        @error('g-recaptcha-response')
                     <span class="alert alert-danger mt-2 d-inline-block"> {{$message}} </span>
                         @enderror
                 @endif
