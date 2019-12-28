@@ -2,9 +2,11 @@
 
 namespace Laracontact\Tests\Feature;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Validator;
 use Laracontact\Events\ContactRequestEvent;
 use Laracontact\Mail\ContactRequestMail;
 use Laracontact\Notifications\ContactRequestNotification;
@@ -31,7 +33,7 @@ class ContactTest extends TestCase
     {
 
         $this->postContactRequest();
-        $this->assertDatabaseHas('contact_requests', $this->getData());
+        $this->assertDatabaseHas('contact_requests', Arr::except($this->getData(), 'g-recaptcha-response'));
     }
 
     /**
@@ -78,6 +80,7 @@ class ContactTest extends TestCase
             'email' => 'email@test.test',
             'subject' => 'dummy subject',
             'message' => 'dummy message',
+            'g-recaptcha-response' => 'dummy key',
         ];
     }
 
