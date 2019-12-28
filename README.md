@@ -43,6 +43,11 @@ return [
     'redirectTo' => '/',
 
     /*
+    * Set the contact us page title.
+    */
+    'page_title' => 'Contact us',
+
+    /*
      * Array of emails that should receive the contact request
      */
     'notifiables' => ['admin@test.test'],
@@ -53,7 +58,7 @@ return [
     'send_mails' => true,
 
     /*
-     * To configure correctly please visit https://developers.google.com    /recaptcha/docs/start
+     * To configure correctly please visit https://developers.google.com/recaptcha/docs/start
      */
     'recaptcha' => [
 
@@ -83,6 +88,14 @@ return [
      */
      'redirectTo' => '/my-custom-redirection',
 ```
+- You can change the contact us page title
+```php
+    /*
+     * Set the url redirection after submitting the contact us form.
+     */
+     'page_title' => 'My Custome title',
+```
+
 - You can add admin's emails in the notifiables array 
 ```php
     /*
