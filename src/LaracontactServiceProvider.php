@@ -6,6 +6,7 @@ namespace Laracontact;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class LaracontactServiceProvider extends ServiceProvider
@@ -15,7 +16,7 @@ class LaracontactServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'laracontact');
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+
 
         $this->publishes([
             __DIR__.'/../database/migrations/create_contact_requests_table.php.stub' => $this->getMigrationFileName($filesystem),
@@ -28,6 +29,8 @@ class LaracontactServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../resources/views/contact_request' => resource_path('views/vendor/contact_request'),
         ], 'laracontact-views');
+
+        Validator::extend('recaptcha', 'Laracontact\\Validators\\ReCaptcha@validate');
 
     }
 
