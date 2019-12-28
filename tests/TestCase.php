@@ -37,9 +37,6 @@ class TestCase extends   \Orchestra\Testbench\TestCase
         $app['config']->set('contact_request.recapcha.recaptcha_secret', env('RECAPTCHA_SECRET'));
         $app['config']->set('contact_request.recapcha.recaptcha_recaptcha_sitekey', env('RECAPTCHA_SITEKEY'));
 
-        dd(config('contact_request.recapcha.recaptcha_secret'));
-
-
     }
 
     protected function getPackageProviders($app)
