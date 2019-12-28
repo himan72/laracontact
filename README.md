@@ -1,4 +1,4 @@
-#Laracontact
+# Laracontact
 __Laracontact__ is a Contact us form for your laravel applications with spam protection through Google reCaptcha V2. <br>
 The package store a contact request with (name, email, subject and message) in the database and send it by email to admins.
 
