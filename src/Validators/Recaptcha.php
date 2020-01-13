@@ -1,8 +1,17 @@
 <?php
 namespace Laracontact\Validators;
+
 use GuzzleHttp\Client;
+
 class ReCaptcha
 {
+    /**
+     * @param $attribute
+     * @param $value
+     * @param $parameters
+     * @param $validator
+     * @return bool
+     */
     public function validate($attribute, $value, $parameters, $validator)
     {
         if(env('APP_ENV') == 'testing') return true; //todo use Mockery

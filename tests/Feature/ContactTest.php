@@ -5,8 +5,6 @@ namespace Laracontact\Tests\Feature;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Validator;
 use Laracontact\Events\ContactRequestEvent;
 use Laracontact\Mail\ContactRequestMail;
 use Laracontact\Notifications\ContactRequestNotification;
@@ -21,9 +19,7 @@ class ContactTest extends TestCase
     public function it_shows_the_contact_us_form()
     {
         $this->withoutExceptionHandling();
-        $this->get('/contact-us')
-            ->assertOk()
-            ->assertSee('Contact us');
+        $this->get('/contact-us')->assertOk()->assertSee('Contact us');
     }
 
     /**
@@ -37,37 +33,33 @@ class ContactTest extends TestCase
     }
 
     /**
-         * @test
-    */
+     * @test
+     */
     public function it_redirect_to_config_path()
     {
-        $this->postContactRequest()
-        ->assertRedirect('/thanks-message');
-
+        $this->postContactRequest()->assertRedirect('/thanks-message');
     }
 
     /**
-         * @test
-    */
+     * @test
+     */
     public function it_notifys_admins_on_contact_request()
     {
         Mail::fake();
         $this->postContactRequest();
         Mail::assertSent(ContactRequestMail::class, 3);
-
     }
 
     /**
-         * @test
-    */
+     * @test
+     */
     public function it_fires_an_event_on_contact_request()
     {
         Event::fake();
 
         $this->postContactRequest();
-        
-        Event::assertDispatched(ContactRequestEvent::class);
 
+        Event::assertDispatched(ContactRequestEvent::class);
     }
 
     /**
@@ -75,7 +67,7 @@ class ContactTest extends TestCase
      */
     protected function getData(): array
     {
-        return[
+        return [
             'name' => 'dummy_name',
             'email' => 'email@test.test',
             'subject' => 'dummy subject',

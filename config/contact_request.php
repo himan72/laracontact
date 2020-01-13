@@ -45,6 +45,6 @@ return [
          *
          */
         'recaptcha_sitekey' => env('RECAPTCHA_SITEKEY'),
-    ]
+    ],
 
 ];
