@@ -49,7 +49,7 @@ $ git commit -m "Feature or bug fix description"
 $ git push origin feature-or-bug-fix-description
 ```
 
-**Note:** Please write your commit messages in the imperative and follow the [guidelines](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html) for clear and concise messages.
+**Note:** Please write your commit messages in the imperative so it is clear and concise.
 
 Then [create a pull request](https://help.github.com/articles/creating-a-pull-request/) on GitHub.
 
