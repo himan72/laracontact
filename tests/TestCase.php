@@ -2,9 +2,8 @@
 
 namespace Laracontact\Tests;
 
-class TestCase extends   \Orchestra\Testbench\TestCase
+class TestCase extends \Orchestra\Testbench\TestCase
 {
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -12,7 +11,6 @@ class TestCase extends   \Orchestra\Testbench\TestCase
         $this->artisan('vendor:publish', ['--tag' => 'Laracontact\LaracontactServiceProvider'])->run();
         $this->artisan('migrate')->run();
     }
-
 
     /**
      * Define environment setup.
@@ -23,7 +21,6 @@ class TestCase extends   \Orchestra\Testbench\TestCase
      */
     protected function getEnvironmentSetUp($app)
     {
-
         $app['config']->set('database.default', 'laracontacttest');
         $app['config']->set('database.connections.laracontacttest', [
             'driver'   => 'sqlite',
@@ -36,7 +33,6 @@ class TestCase extends   \Orchestra\Testbench\TestCase
         $app['config']->set('contact_request.send_mails', true);
         $app['config']->set('contact_request.recapcha.recaptcha_secret', env('RECAPTCHA_SECRET'));
         $app['config']->set('contact_request.recapcha.recaptcha_recaptcha_sitekey', env('RECAPTCHA_SITEKEY'));
-
     }
 
     protected function getPackageProviders($app)
