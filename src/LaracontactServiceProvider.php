@@ -11,7 +11,6 @@ class LaracontactServiceProvider extends ServiceProvider
 {
     public function boot(Filesystem $filesystem)
     {
-
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'laracontact');
 
@@ -32,7 +31,6 @@ class LaracontactServiceProvider extends ServiceProvider
 
     public function register()
     {
-
     }
 
     /**
@@ -48,7 +46,7 @@ class LaracontactServiceProvider extends ServiceProvider
         return Collection::make($this->app->databasePath().DIRECTORY_SEPARATOR.'migrations'.DIRECTORY_SEPARATOR)->flatMap(function (
                 $path
             ) use ($filesystem) {
-                return $filesystem->glob($path.'*_create_contact_requests_table.php');
-            })->push($this->app->databasePath()."/migrations/{$timestamp}_create_contact_requests_table.php")->first();
+            return $filesystem->glob($path.'*_create_contact_requests_table.php');
+        })->push($this->app->databasePath()."/migrations/{$timestamp}_create_contact_requests_table.php")->first();
     }
 }

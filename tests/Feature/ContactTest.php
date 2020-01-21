@@ -7,12 +7,10 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
 use Laracontact\Events\ContactRequestEvent;
 use Laracontact\Mail\ContactRequestMail;
-use Laracontact\Notifications\ContactRequestNotification;
 use Laracontact\Tests\TestCase;
 
 class ContactTest extends TestCase
 {
-
     /**
      * @test
      */
@@ -27,7 +25,6 @@ class ContactTest extends TestCase
      */
     public function it_stores_the_contact_message_in_contact_requests_table()
     {
-
         $this->postContactRequest();
         $this->assertDatabaseHas('contact_requests', Arr::except($this->getData(), 'g-recaptcha-response'));
     }
